@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+
+$font-principal: 'Inter', sans-serif;
+
+@each $justify-content in (center, space-between){
+    .justify-content-#{$justify-content}{
+        justify-content: $justify-content;
+    }
+}
+.display-flex{
+    display: flex;
+}
+.space-between{
+    justify-content: space-between;
+}
+.align-items-center{
+    align-items: center;
+}

@@ -29,15 +29,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+@import '../../scss/style.scss';
     .c-navbar{
-        font-family: 'Inter', sans-serif; 
+        font-family: $font-principal; 
         height: 84px;
         background-color: #D9D9D9;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @extend .display-flex;
+        @extend .justify-content-space-between;
+        @extend .align-items-center;
         padding: 0px 60px 0px 25px;
       
 
@@ -52,9 +52,13 @@ export default {
         &__navigation{
             font-size: 20px;
             font-weight: 700;
+            width: 200px;
+            @extend .display-flex;
+            @extend .justify-content-space-between;
+            
 
-            &__nav1{
-                padding-right: 30px;
+            &__nav1, &__nav2:hover{
+                cursor: pointer;
             }
             
         }
