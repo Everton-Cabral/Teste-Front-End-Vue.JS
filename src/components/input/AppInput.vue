@@ -8,23 +8,49 @@
             @keypress.enter="submite()"
         >
         <span class="material-symbols-outlined">search</span>
-       
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import { mapMutations } from 'vuex';
+
 export default {
     name:'AppInput',
 
     data(){
         return{
-            text:''
+            text:'',
         }
     },
     methods:{
+        ...mapMutations([
+            'changeAlert',
+            'sendingUsers'
+        ]),
         submite(){
-            this.$router.push('/users')
+            
+            if(this.userSearch){
+                fetch(`https://api.github.com/search/users?q=${this.text}&page=1`)
+                .then(response => response.json())
+                .then(data => {
+                    if(data.items.length === 0){
+                        this.changeAlert()
+                        this.text = ''
+                    }
+                    this.sendingUsers(data.items)
+                    console.log(data.items)
+                });
+
+                this.$router.push('/users')
+            }
         }
+    },
+    computed:{
+        ...mapState([
+            'repositorySearch',
+            'userSearch',
+        ])
     }
 }
 </script>

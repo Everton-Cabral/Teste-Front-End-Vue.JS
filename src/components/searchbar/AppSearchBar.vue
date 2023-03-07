@@ -5,12 +5,12 @@
         <div class="c-searchbar__buttons">
             <AppHomeButton 
                 text="Repositório"
-                @click="changeSearch()"
+                @click="changeSearch('Repositório')"
             />
     
             <AppHomeButton 
                 text="Usuário"
-                @click="changeSearch()"
+                @click="changeSearch('Usuário')"
             />
         </div>
 

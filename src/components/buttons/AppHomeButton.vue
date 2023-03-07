@@ -16,11 +16,14 @@ export default {
         }
     },
     computed:{
-        ...mapState(['userSearch']),
+        ...mapState([
+            'repositorySearch',
+            'userSearch'
+        ]),
 
         active(){
             let result
-            if(this.text === 'Repositório' && this.userSearch === false){
+            if(this.text === 'Repositório' && this.repositorySearch === true){
                 result = 'active'
             } 
             if(this.text === 'Usuário' && this.userSearch === true){

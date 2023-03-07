@@ -7,7 +7,7 @@
         <span class="c-alert__subtitle">Não foi possível encontrar o Repositório ou usuário desejado!</span>
 
         <AppAlertButton 
-            @click="closeAlert"
+            @click="changeAlert"
         />
     </div>
 </template>
@@ -23,7 +23,7 @@ export default {
     },
     methods:{
         ...mapMutations([
-            'closeAlert'
+            'changeAlert'
         ])
 
     }
