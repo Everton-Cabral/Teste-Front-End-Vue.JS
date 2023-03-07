@@ -1,20 +1,19 @@
 <template>
     <div class="c-home">
         <AppNavbar />
-        <AppSearchBar />
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 import AppNavbar from '../navbar/AppNavbar'
-import AppSearchBar from '../searchbar/AppSearchBar'
+
 
 export default {
     name:'AppHome',
     
     components:{
-        AppNavbar,
-        AppSearchBar
+        AppNavbar  
     }
 }
 </script>

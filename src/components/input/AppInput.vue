@@ -1,7 +1,12 @@
 <template>
     <div class="c-input">
       
-        <input type="text" placeholder="Buscar..." class="c-input__search">
+        <input type="text" 
+            placeholder="Buscar..." 
+            class="c-input__search" 
+            v-model="text"
+            @keypress.enter="submite()"
+        >
         <span class="material-symbols-outlined">search</span>
        
     </div>
@@ -9,7 +14,18 @@
 
 <script>
 export default {
-    name:'AppInput'
+    name:'AppInput',
+
+    data(){
+        return{
+            text:''
+        }
+    },
+    methods:{
+        submite(){
+            this.$router.push('/users')
+        }
+    }
 }
 </script>
 
