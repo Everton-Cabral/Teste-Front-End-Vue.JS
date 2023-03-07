@@ -11,6 +11,7 @@ import AppSearchBar from '../searchbar/AppSearchBar'
 
 export default {
     name:'AppHome',
+    
     components:{
         AppNavbar,
         AppSearchBar

@@ -31,6 +31,6 @@ export default {
          font-size: 50px;
          position: absolute;
          margin-left: -65px;
-        margin-top: 10px;
-}
+         margin-top: 10px;
+    }
 </style>

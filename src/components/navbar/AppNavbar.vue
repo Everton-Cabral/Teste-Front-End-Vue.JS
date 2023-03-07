@@ -56,7 +56,6 @@ export default {
             @extend .display-flex;
             @extend .justify-content-space-between;
             
-
             &__nav1, &__nav2:hover{
                 cursor: pointer;
             }

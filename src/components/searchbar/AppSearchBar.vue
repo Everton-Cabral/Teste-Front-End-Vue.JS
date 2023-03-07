@@ -5,10 +5,12 @@
         <div class="c-searchbar__buttons">
             <AppHomeButton 
                 text="Repositório"
+                @click="changeSearch()"
             />
     
             <AppHomeButton 
                 text="Usuário"
+                @click="changeSearch()"
             />
         </div>
 
@@ -19,12 +21,18 @@
 <script>
 import AppHomeButton from '../buttons/AppHomeButton'
 import AppInput from '../input/AppInput'
+import { mapMutations } from 'vuex'
 export default {
     name:'AppSearchBar',
     
     components:{
         AppHomeButton,
         AppInput
+    },
+    methods:{
+        ...mapMutations([
+            'changeSearch'
+        ]),
     }
 }
 </script>

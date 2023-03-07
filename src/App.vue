@@ -5,12 +5,16 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import AppHome from './components/home/AppHome'
 
-export default {
+export default defineComponent({
   name: 'App',
-  components:{AppHome}
-}
+
+  components: {
+    AppHome
+  }
+})
 </script>
 
 <style>

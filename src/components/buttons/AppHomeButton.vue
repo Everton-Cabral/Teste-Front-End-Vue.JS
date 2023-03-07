@@ -1,16 +1,33 @@
 <template>
-    <div class="c-homebutton">
+    <div class="c-homebutton" :class="active">
         {{ text }}
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     name:'AppHomeButton',
+    
     props:{
         text:{
             type: String,
             required: true
+        }
+    },
+    computed:{
+        ...mapState(['userSearch']),
+
+        active(){
+            let result
+            if(this.text === 'Repositório' && this.userSearch === false){
+                result = 'active'
+            } 
+            if(this.text === 'Usuário' && this.userSearch === true){
+                result = 'active'
+            }
+        
+            return result    
         }
     }
 }
@@ -31,5 +48,12 @@ export default {
     @extend .align-items-center;
     font-family: $font-principal;
     margin: 0px 15px 0px 15px;
+}
+.c-homebutton:hover{
+    cursor: pointer;
+}
+.active{
+    background-color: #000000;
+    color: white;
 }
 </style>
