@@ -11,11 +11,15 @@
         </div>
 
         <div class="c-navbar__navigation">
-            <span class="c-navbar__navigation__nav1">
+            <span class="c-navbar__navigation__nav1" 
+                @click="start()"
+            >
                 INÍCIO
             </span>
 
-            <span class="c-navbar__navigation__nav2">
+            <span class="c-navbar__navigation__nav2"
+                @click="favorite()"
+            >
                 FAVORITOS
             </span>
         </div>
@@ -24,7 +28,16 @@
 
 <script>
 export default {
-    name:'AppNavbar'
+    name:'AppNavbar',
+
+    methods:{
+        start(){
+            this.$router.push('/')
+        },
+        favorite(){
+            this.$router.push('/favorite')
+        }
+    }
 }
 </script>
 

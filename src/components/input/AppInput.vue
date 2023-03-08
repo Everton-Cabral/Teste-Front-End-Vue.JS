@@ -26,7 +26,8 @@ export default {
     methods:{
         ...mapMutations([
             'changeAlert',
-            'sendingUsers'
+            'sendingUsers',
+            'sendingRepositories'
         ]),
         submite(){
             
@@ -39,10 +40,21 @@ export default {
                         this.text = ''
                     }
                     this.sendingUsers(data.items)
-                    console.log(data.items)
                 });
 
                 this.$router.push('/users')
+            }else{
+                fetch(`https://api.github.com/search/repositories?q=${this.text}&page=1`)
+                .then(response => response.json())
+                .then(data => { 
+                    if(data.items.length === 0){
+                        this.changeAlert()
+                        this.text = ''
+                    }
+                    this.sendingRepositories(data.items)
+                    console.log(data)
+                })
+                this.$router.push('/repositories')
             }
         }
     },
