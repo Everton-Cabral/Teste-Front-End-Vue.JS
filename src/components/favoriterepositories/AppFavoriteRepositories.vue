@@ -4,12 +4,36 @@
             <img src="../../assets/github.png" alt="github" class="c-favorites__title__img">
             <span>Repositórios Favoritos</span>
         </div>
+
+        <div class="c-favorites__repositories"
+             v-for="repository in favoriterepositories" 
+             :key="repository.id"
+        >
+            <AppRepository
+                :name="repository.name"
+                :description="repository.description"
+                :stars="repository.stars"
+                :id="repository.id"
+            />
+        </div>
     </div>
 </template>
 
 <script>
+import AppRepository from '../repository/AppRepository'
+import { mapState } from 'vuex'
+
 export default {
-    name:'AppFavoriteRepositories'
+    name:'AppFavoriteRepositories',
+
+    components:{
+        AppRepository
+    },
+    computed:{
+        ...mapState([
+            'favoriterepositories'
+        ])
+    }
 }
 </script>
 

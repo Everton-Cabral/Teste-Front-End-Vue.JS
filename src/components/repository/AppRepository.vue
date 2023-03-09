@@ -2,7 +2,10 @@
     <div class="c-repository">
         <div class="c-repository__title">
             <span>{{ name }}</span>
-            <img src="../../assets/star.png" alt="star" class="c-repository__title__starbig">
+            <img src="../../assets/star.png" alt="star" 
+                class="c-repository__title__starbig"
+                @click="addrepository()"
+            >
         </div>
 
         <div class="c-repository__description">
@@ -18,6 +21,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
     name:'AppRepository',
 
@@ -33,6 +37,26 @@ export default {
         stars:{
             type: String,
             required: true
+        },
+        id:{
+            type: Number,
+            required: true
+        }
+    },
+
+    methods:{
+        ...mapMutations([
+            'addfavoriterepoitory'
+        ]),
+
+        addrepository(){
+            let params = {
+                id: this.id,
+                name: this.name,
+                description: this.description,
+                stars: this.stars,
+            }
+            this.addfavoriterepoitory(params)
         }
     }
 }
@@ -49,6 +73,10 @@ export default {
             font-weight: 400;
             @extend .display-flex;
             @extend .justify-content-space-between;
+
+            &__starbig:hover{
+                cursor: pointer;
+            }
         }
         &__description{
             font-size: 24px;
@@ -62,6 +90,7 @@ export default {
                 width: 24px;
                 height: 22px;
             }
+            
         }
     }
 </style>

@@ -5,6 +5,7 @@
                 :name="repository.name"
                 :description="repository.description"
                 :stars="repository.stargazers_count"
+                :id="repository.id"
             />
         </div>
           

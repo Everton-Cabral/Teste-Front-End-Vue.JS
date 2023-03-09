@@ -6,7 +6,8 @@ export const store = createStore({
             userSearch: false,
             alert: false,
             users:[],
-            repositories:[]
+            repositories:[],
+            favoriterepositories:[]
         }
     },
     mutations:{
@@ -27,6 +28,9 @@ export const store = createStore({
         },
         sendingRepositories(state, params){
             state.repositories = params
+        },
+        addfavoriterepoitory(state, params){
+            state.favoriterepositories.push(params)
         }
     }
 })
