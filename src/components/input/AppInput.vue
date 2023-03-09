@@ -52,7 +52,6 @@ export default {
                         this.text = ''
                     }
                     this.sendingRepositories(data.items)
-                    console.log(data)
                 })
                 this.$router.push('/repositories')
             }

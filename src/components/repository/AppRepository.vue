@@ -2,9 +2,16 @@
     <div class="c-repository">
         <div class="c-repository__title">
             <span>{{ name }}</span>
+            <img src="../../assets/stargold.png" alt="star" 
+                class="c-repository__title__starbig"
+                @click="addrepository()"
+                v-if="favoritestar"
+            >
+
             <img src="../../assets/star.png" alt="star" 
                 class="c-repository__title__starbig"
                 @click="addrepository()"
+                v-else
             >
         </div>
 
@@ -22,6 +29,7 @@
 
 <script>
 import { mapMutations } from 'vuex';
+import { mapState } from 'vuex';
 export default {
     name:'AppRepository',
 
@@ -57,6 +65,14 @@ export default {
                 stars: this.stars,
             }
             this.addfavoriterepoitory(params)
+        }
+    },
+    computed:{
+        ...mapState([
+            'favoriterepositories'
+        ]),
+        favoritestar(){   
+            return this.favoriterepositories.some( repository => repository.id === this.id) 
         }
     }
 }
