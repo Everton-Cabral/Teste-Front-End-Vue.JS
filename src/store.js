@@ -30,7 +30,13 @@ export const store = createStore({
             state.repositories = params
         },
         addfavoriterepoitory(state, params){
-            state.favoriterepositories.push(params)
+            const index = state.favoriterepositories.findIndex( repository => repository.id === params.id)
+          
+            if(index != -1){
+                state.favoriterepositories.splice(index, 1)
+            } else{
+                state.favoriterepositories.push(params)
+            }
         }
     }
 })
