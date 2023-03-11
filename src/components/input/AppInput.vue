@@ -40,7 +40,7 @@ export default {
                         this.text = ''
                     }
                     this.sendingUsers(data.items)
-                });
+                })
 
                 this.$router.push('/users')
             }else{

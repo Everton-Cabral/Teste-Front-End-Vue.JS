@@ -17,8 +17,7 @@ export default {
         name:{
             type: String,
             required: true
-        }
-        
+        }  
     }
 }
 </script>
@@ -47,5 +46,10 @@ export default {
             height: 100%;
             margin-top: 40px;
         }
+       
+    }
+    .c-user:hover{
+        cursor: pointer;
+        background-color: rgb(202, 202, 202)
     }
 </style>

@@ -4,6 +4,7 @@
          <AppUser 
             :img="user.avatar_url"
             :name="user.login"
+            @click="userdetail(user.login)"
          />
      </div>
      <div class="c-users__button">
@@ -12,11 +13,13 @@
      <AppShowButton 
      v-if="!showMore" @click="showMore = true"
      />
+     
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 import AppUser from '../user/AppUser'
 import AppShowButton from '../buttons/AppShowButton'
 export default {
@@ -24,14 +27,39 @@ export default {
 
     data(){
         return{
-            showMore: false
+            showMore: false,
+            teste:''
         }
     },
     components:{
         AppUser,
         AppShowButton
     },
+    methods:{
+        ...mapMutations([
+            'selecteduser',
+            'sendrepositories'
+        ]),
 
+        userdetail(params){
+            // const token = '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'; 
+            // const headers = new Headers({
+            //      'Authorization': `token ${token}`
+            // });
+            fetch(`https://api.github.com/users/${params}`)
+                .then(response => response.json())
+                .then(data => {
+                    this.selecteduser(data)
+                });
+            fetch(`https://api.github.com/users/${params}/repos?direction=desc`)
+                .then(response => response.json())
+                .then(data => {
+                    this.sendrepositories(data)
+                });
+               
+            this.$router.push('/userdetail')
+        }
+    },
     computed:{
         ...mapState([
             'users'
