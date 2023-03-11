@@ -11,7 +11,8 @@
 
      </div>
      <AppShowButton 
-     v-if="!showMore" @click="showMore = true"
+        v-if="!showMore" @click="showMore = true"
+        name="Ver mais"
      />
      
     </div>
@@ -52,9 +53,7 @@ export default {
                 .then(data => {
                     this.sendrepositories(data)
                     this.$router.push('/userdetail')
-                });
-               
-            
+                });    
         }
     },
     computed:{
