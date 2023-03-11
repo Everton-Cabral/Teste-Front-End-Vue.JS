@@ -13,12 +13,14 @@
         <div class="c-navbar__navigation">
             <span class="c-navbar__navigation__nav1" 
                 @click="start()"
+                :class="inicio"
             >
                 INÍCIO
             </span>
 
             <span class="c-navbar__navigation__nav2"
                 @click="favorite()"
+                :class="favorito"
             >
                 FAVORITOS
             </span>
@@ -37,7 +39,25 @@ export default {
         favorite(){
             this.$router.push('/favorite')
         }
+    },
+    computed:{
+        active(){
+            let result
+            if(this.$route.path === '/'){
+                result = "inicio"
+            }else if(this.$route.path === '/favorite'){
+                result = 'favorito'
+            }
+            return result
+        },
+        inicio(){
+           return this.active === 'inicio' ? 'active' : ''
+        },
+        favorito(){
+            return this.active === 'favorito' ? 'active' : ''
+        }
     }
+    
 }
 </script>
 
@@ -74,6 +94,9 @@ export default {
             }
             
         }
+    }
+    .active{
+        color: red;
     }
 
 </style>

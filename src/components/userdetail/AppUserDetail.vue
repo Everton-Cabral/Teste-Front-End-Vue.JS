@@ -32,8 +32,15 @@
             </div>
         </div>
 
-        <div>
-            <AppRepository />
+        <div class="c-userdetail__repositories">
+            <div v-for="repository in userrepositories" :key="repository.id" >
+                <AppRepository 
+                    :name="repository.name"
+                    :description="repository.description"
+                    :stars="repository.stargazers_count"
+                    :id="repository.id"
+                />
+            </div>
         </div>
         
     </div>
@@ -62,6 +69,7 @@ export default {
     padding: 20px;
     font-family: $font-user;
     font-weight: 300;
+    @extend .display-flex;
 
 
     &__info{
@@ -97,6 +105,9 @@ export default {
                 margin-right: 10px;
             }
         }
+    }
+    &__repositories{
+        width: 100%;
     }
 
 }

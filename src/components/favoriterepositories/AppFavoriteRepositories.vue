@@ -4,10 +4,16 @@
             <img src="../../assets/github.png" alt="github" class="c-favorites__title__img">
             <span>Repositórios Favoritos</span>
         </div>
+        <div class="c-favorites__message" 
+            v-if="favoriterepositories.length==0"
+        >
+            <h1>Nenhum Repositório Escolhido</h1>
+        </div>
 
         <div class="c-favorites__repositories"
              v-for="repository in favoriterepositories" 
              :key="repository.id"
+             v-else
         >
             <AppRepository
                 :name="repository.name"
@@ -54,8 +60,11 @@ export default {
             width: 50px;
             height: 50px;
             margin-right: 15px;
-        }
+        }       
     }
+    &__message{
+            padding: 80px;
+        }
 }
 
 </style>

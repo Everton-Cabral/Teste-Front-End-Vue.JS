@@ -42,10 +42,6 @@ export default {
         ]),
 
         userdetail(params){
-            // const token = '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'; 
-            // const headers = new Headers({
-            //      'Authorization': `token ${token}`
-            // });
             fetch(`https://api.github.com/users/${params}`)
                 .then(response => response.json())
                 .then(data => {
@@ -55,9 +51,10 @@ export default {
                 .then(response => response.json())
                 .then(data => {
                     this.sendrepositories(data)
+                    this.$router.push('/userdetail')
                 });
                
-            this.$router.push('/userdetail')
+            
         }
     },
     computed:{

@@ -7,7 +7,11 @@
             v-model="text"
             @keypress.enter="submite()"
         >
-        <span class="material-symbols-outlined">search</span>
+        <span class="material-symbols-outlined"
+             @click="submite()"
+        >
+            search
+        </span>
     </div>
 </template>
 
@@ -30,30 +34,36 @@ export default {
             'sendingRepositories'
         ]),
         submite(){
+            if(this.text === ''){
+                this.changeAlert()
+                return
+            }
             
             if(this.userSearch){
                 fetch(`https://api.github.com/search/users?q=${this.text}&page=1`)
                 .then(response => response.json())
                 .then(data => {
-                    if(data.items.length === 0){
-                        this.changeAlert()
+                    if(data.items.length === 0){ 
                         this.text = ''
+                        this.changeAlert()  
+                        return;
                     }
                     this.sendingUsers(data.items)
+                    this.$router.push('/users')
                 })
-
-                this.$router.push('/users')
+               
             }else{
                 fetch(`https://api.github.com/search/repositories?q=${this.text}&page=1`)
                 .then(response => response.json())
                 .then(data => { 
                     if(data.items.length === 0){
-                        this.changeAlert()
                         this.text = ''
+                        this.changeAlert()
+                        return;
                     }
                     this.sendingRepositories(data.items)
-                })
-                this.$router.push('/repositories')
+                    this.$router.push('/repositories')
+                })     
             }
         }
     },
@@ -85,5 +95,8 @@ export default {
          position: absolute;
          margin-left: -65px;
          margin-top: 10px;
+    }
+    .material-symbols-outlined:hover{
+        cursor: pointer;
     }
 </style>

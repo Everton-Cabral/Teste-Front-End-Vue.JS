@@ -4,6 +4,7 @@ import AppUsers from './components/users/AppUsers'
 import AppRepositories from './components/repositories/AppRepositories'
 import AppFavoriteRepositories from './components/favoriterepositories/AppFavoriteRepositories'
 import AppUserDetail from './components/userdetail/AppUserDetail'
+import AppNotFound from './components/notfound/AppNotFound'
 
 
 const routes = [
@@ -12,6 +13,7 @@ const routes = [
     { path: '/repositories', component: AppRepositories},
     { path: '/favorite', component: AppFavoriteRepositories},
     { path: '/userdetail', component: AppUserDetail},
+    { path: '/:pathMatch(.*)*', component: AppNotFound},
 ]
 
 export const router = createRouter({

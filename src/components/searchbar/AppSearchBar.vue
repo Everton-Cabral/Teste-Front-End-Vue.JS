@@ -15,6 +15,7 @@
         </div>
 
         <AppInput />  
+        
     </div>
 </template>
 
@@ -33,7 +34,8 @@ export default {
         ...mapMutations([
             'changeSearch'
         ]),
-    }
+    },
+   
 }
 </script>
 
