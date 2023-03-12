@@ -70,15 +70,15 @@ export default {
         seeMore(){
             this.setuserrepositoriesitems()
             this.getUserRepositories(this.user.login)
-        }
+        },
+        
     },
     computed:{
         ...mapState([
             'user',
             'userrepositories'
         ]),
-       
-    }
+    },
 }
 </script>
 

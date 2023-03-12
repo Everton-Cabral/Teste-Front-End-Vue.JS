@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppNavbar from '../navbar/AppNavbar'
 import AppAlert from '../alert/AppAlert'
 
@@ -20,7 +21,11 @@ export default {
         AppNavbar,
         AppAlert  
     },
-   
+    computed:{
+        ...mapState([
+            'alert'
+        ])
+    }
 }
 </script>
 

@@ -8,13 +8,14 @@ import AppNotFound from './components/notfound/AppNotFound'
 
 
 const routes = [
-    { path: '/', component: AppSearchBar},
+    { name:'home', path: '/', component: AppSearchBar},
     { name: 'users', path: '/users', component: AppUsers},
     { name: 'repositories', path: '/repositories', component: AppRepositories},
-    { path: '/favorite', component: AppFavoriteRepositories},
-    { path: '/userdetail', component: AppUserDetail},
+    { name: 'favorite', path: '/favorite', component: AppFavoriteRepositories},
+    { name: 'userdetail', path: '/userdetail', component: AppUserDetail},
     { path: '/:pathMatch(.*)*', component: AppNotFound},
 ]
+
 
 export const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
