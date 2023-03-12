@@ -13,7 +13,8 @@ export const store = createStore({
             userrepositories:[],
             repositoriespage:1,
             usersitems:3,
-            repositoriesitems:4
+            repositoriesitems:4,
+            userrepositoriesitems:4
         }
     },
     mutations:{
@@ -56,7 +57,10 @@ export const store = createStore({
         setrepositoriesitems(state){
             state.repositoriesitems = state.repositoriesitems + 5
         },
-        
+        setuserrepositoriesitems(state){
+            state.userrepositoriesitems = state.userrepositoriesitems + 5
+            console.log('oi')
+        },
         set_text (state, params) {
             state.text = params
         }
@@ -86,8 +90,8 @@ export const store = createStore({
                 commit('selecteduser', data)
             });
         },
-        getUserRepositories ({commit}, params){
-            return fetch(`https://api.github.com/users/${params}/repos?direction=desc`)
+        getUserRepositories ({commit, state}, params){
+            return fetch(`https://api.github.com/users/${params}/repos?direction=desc&per_page=${state.userrepositoriesitems}`)
             .then(response => response.json())
             .then(data => {
                 commit('sendrepositories', data)

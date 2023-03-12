@@ -33,7 +33,7 @@
         </div>
 
         <div class="c-userdetail__repositories">
-            <div v-for="repository in visibleuserrepositories" :key="repository.id" class="c-userdetail__repositories__repository">
+            <div v-for="repository in userrepositories" :key="repository.id" class="c-userdetail__repositories__repository">
                 <AppRepository 
                     :name="repository.name"
                     :description="repository.description"
@@ -42,7 +42,7 @@
                 />
             </div>
             <AppShowButton 
-                @click="showMore=true"
+                @click="seeMore()"
                 name="Ver mais repositórios"
             />
         </div>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 import AppRepository from '../repository/AppRepository'
 import AppShowButton from '../buttons/AppShowButton.vue'
 export default {
@@ -60,9 +60,16 @@ export default {
         AppRepository,
         AppShowButton,
     },
-    data(){
-        return{
-            showMore: false
+    methods:{
+        ...mapMutations([
+            'setuserrepositoriesitems'
+        ]),
+        ...mapActions([
+            'getUserRepositories'
+        ]),
+        seeMore(){
+            this.setuserrepositoriesitems()
+            this.getUserRepositories(this.user.login)
         }
     },
     computed:{
@@ -70,9 +77,7 @@ export default {
             'user',
             'userrepositories'
         ]),
-        visibleuserrepositories(){
-            return this.showMore ? this.userrepositories : this.userrepositories.slice(0, 4)
-        }
+       
     }
 }
 </script>

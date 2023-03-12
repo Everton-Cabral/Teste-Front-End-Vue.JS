@@ -1,7 +1,7 @@
 <template>
-    <button class="c-showbutton">
+    <div class="c-showbutton">
         {{ name }}
-    </button>
+    </div>
 </template>
 
 <script>
