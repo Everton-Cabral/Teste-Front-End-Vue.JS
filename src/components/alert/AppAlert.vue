@@ -29,7 +29,6 @@ export default {
             this.changeAlert()
             this.$router.push('/')
         }
-
     }
 }
 </script>

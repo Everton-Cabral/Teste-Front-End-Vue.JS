@@ -1,12 +1,12 @@
 <template>
     <div class="c-input">
-      
         <input type="text" 
             placeholder="Buscar..." 
             class="c-input__search" 
             v-model="localtext"
             @keypress.enter="submite()"
         >
+
         <span class="material-symbols-outlined"
              @click="submite()"
         >
@@ -26,7 +26,6 @@ export default {
             'getUsers',
             'getRepositories'
         ]),
-
         ...mapMutations([
             'set_text',
             'changeAlert',

@@ -44,9 +44,7 @@ export default {
         ...mapState([
             'repositories'
         ]),
-    
     }
-
 }
 </script>
 

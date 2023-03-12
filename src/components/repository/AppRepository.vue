@@ -55,7 +55,6 @@ export default {
         ...mapMutations([
             'addfavoriterepoitory'
         ]),
-
         addrepository(){
             let params = {
                 id: this.id,

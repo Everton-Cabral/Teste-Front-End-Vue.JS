@@ -23,7 +23,7 @@ export default {
     border-radius: 10px;
     @extend .display-flex;
     @extend .align-items-center;
-   @extend .justify-content-center;
+    @extend .justify-content-center;
     
 }
 .c-alertbutton:hover{

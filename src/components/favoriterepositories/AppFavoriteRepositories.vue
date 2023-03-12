@@ -4,6 +4,7 @@
             <img src="../../assets/github.png" alt="github" class="c-favorites__title__img">
             <span>Repositórios Favoritos</span>
         </div>
+
         <div class="c-favorites__message" 
             v-if="favoriterepositories.length==0"
         >
@@ -63,8 +64,8 @@ export default {
         }       
     }
     &__message{
-            padding: 80px;
-        }
+        padding: 80px;
+    }
 }
 
 </style>

@@ -20,7 +20,6 @@ export default {
             'repositorySearch',
             'userSearch'
         ]),
-
         active(){
             let result
             if(this.text === 'Repositório' && this.repositorySearch === true){
@@ -29,7 +28,6 @@ export default {
             if(this.text === 'Usuário' && this.userSearch === true){
                 result = 'active'
             }
-        
             return result    
         }
     }

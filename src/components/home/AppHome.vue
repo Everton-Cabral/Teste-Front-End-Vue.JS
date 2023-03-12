@@ -13,7 +13,6 @@ import { mapState } from 'vuex'
 import AppNavbar from '../navbar/AppNavbar'
 import AppAlert from '../alert/AppAlert'
 
-
 export default {
     name:'AppHome',
     
