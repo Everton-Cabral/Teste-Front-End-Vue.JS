@@ -9,8 +9,8 @@ import AppNotFound from './components/notfound/AppNotFound'
 
 const routes = [
     { path: '/', component: AppSearchBar},
-    { path: '/users', component: AppUsers},
-    { path: '/repositories', component: AppRepositories},
+    { name: 'users', path: '/users', component: AppUsers},
+    { name: 'repositories', path: '/repositories', component: AppRepositories},
     { path: '/favorite', component: AppFavoriteRepositories},
     { path: '/userdetail', component: AppUserDetail},
     { path: '/:pathMatch(.*)*', component: AppNotFound},

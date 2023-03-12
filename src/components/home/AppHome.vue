@@ -11,21 +11,16 @@
 <script>
 import AppNavbar from '../navbar/AppNavbar'
 import AppAlert from '../alert/AppAlert'
-import { mapState } from 'vuex';
+
 
 export default {
-    
     name:'AppHome',
     
     components:{
         AppNavbar,
         AppAlert  
     },
-    computed:{
-        ...mapState([
-            'alert'
-        ])
-    }
+   
 }
 </script>
 

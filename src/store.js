@@ -5,11 +5,15 @@ export const store = createStore({
             repositorySearch: true,
             userSearch: false,
             alert: false,
+            text:'',
             users:[],
             repositories:[],
             favoriterepositories:[],
             user:[],
-            userrepositories:[]
+            userrepositories:[],
+            repositoriespage:1,
+            usersitems:3,
+            repositoriesitems:4
         }
     },
     mutations:{
@@ -45,6 +49,49 @@ export const store = createStore({
         },
         sendrepositories(state, params){
             state.userrepositories = params
+        },
+        setusersitems(state){
+            state.usersitems = state.usersitems + 4
+        },
+        setrepositoriesitems(state){
+            state.repositoriesitems = state.repositoriesitems + 5
+        },
+        
+        set_text (state, params) {
+            state.text = params
+        }
+    },
+
+    actions: {
+        getUsers ({ commit, state }) {
+            return fetch(`https://api.github.com/search/users?q=${state.text}&per_page=${state.usersitems}&page=1`)
+                .then(response => response.json())
+                .then(data => {
+                    commit('sendingUsers', data.items)
+                    return data
+                })
+        },
+        getRepositories ( {commit, state}){
+            return fetch(`https://api.github.com/search/repositories?q=${state.text}&per_page=${state.repositoriesitems}&page=1`)
+            .then(response => response.json())
+            .then(data => { 
+                commit('sendingRepositories', data.items)
+                return data
+            })     
+        },
+        getUser ({commit}, params){
+            return fetch(`https://api.github.com/users/${params}`)
+            .then(response => response.json())
+            .then(data => {
+                commit('selecteduser', data)
+            });
+        },
+        getUserRepositories ({commit}, params){
+            return fetch(`https://api.github.com/users/${params}/repos?direction=desc`)
+            .then(response => response.json())
+            .then(data => {
+                commit('sendrepositories', data)
+            });  
         }
     }
 })

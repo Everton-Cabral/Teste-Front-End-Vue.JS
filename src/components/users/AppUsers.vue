@@ -1,26 +1,26 @@
 <template>
     <div class="c-users">
-     <div v-for="user in visibleUsers" :key="user.id" class="c-users__user">
+     <div v-for="user in users" :key="user.id" class="c-users__user">
          <AppUser 
             :img="user.avatar_url"
             :name="user.login"
             @click="userdetail(user.login)"
          />
      </div>
-     <div class="c-users__button">
 
+     <div class="c-users__button">
+         <AppShowButton 
+            v-if="!showMore"
+            name="Ver mais"
+            @click="seeMore()"
+         />
      </div>
-     <AppShowButton 
-        v-if="!showMore" @click="showMore = true"
-        name="Ver mais"
-     />
      
     </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { mapMutations } from 'vuex'
+import {mapState, mapMutations, mapActions } from 'vuex'
 import AppUser from '../user/AppUser'
 import AppShowButton from '../buttons/AppShowButton'
 export default {
@@ -39,31 +39,34 @@ export default {
     methods:{
         ...mapMutations([
             'selecteduser',
-            'sendrepositories'
+            'sendrepositories',
+            'setusersitems'
+        ]),
+        ...mapActions([
+            'getUsers',
+            'getUser',
+            'getUserRepositories'
         ]),
 
+        seeMore(){
+            this.setusersitems()
+            this.getUsers()
+        },
+
         userdetail(params){
-            fetch(`https://api.github.com/users/${params}`)
-                .then(response => response.json())
-                .then(data => {
-                    this.selecteduser(data)
-                });
-            fetch(`https://api.github.com/users/${params}/repos?direction=desc`)
-                .then(response => response.json())
-                .then(data => {
-                    this.sendrepositories(data)
-                    this.$router.push('/userdetail')
-                });    
+            this.getUser(params)
+            this.getUserRepositories(params)
+            .then(() =>{
+                this.$router.push('/userdetail') 
+            })  
         }
     },
     computed:{
         ...mapState([
-            'users'
+            'text',
+            'users',
+            'userspage'
         ]),
-
-        visibleUsers() {
-             return this.showMore ? this.users : this.users.slice(0, 3)
-        }
     },
    
 }
@@ -82,6 +85,7 @@ export default {
         }    
         &__button{
             margin-top: 40px;
+            margin-bottom: 40px;
         }
        
     }

@@ -28,8 +28,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 export default {
     name:'AppRepository',
 
@@ -83,6 +82,7 @@ export default {
     .c-repository{
         font-family: $font-user;
         padding: 30px 50px 30px 50px;
+     
 
         &__title{
             font-size: 36px;

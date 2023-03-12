@@ -1,6 +1,6 @@
 <template>
     <div class="c-repositories">
-        <div v-for="repository in visiblerepositories" :key="repository.id">
+        <div v-for="repository in repositories" :key="repository.id" class="c-repositories__repository">
             <AppRepository 
                 :name="repository.name"
                 :description="repository.description"
@@ -10,37 +10,41 @@
         </div>
         <AppShowButton 
             name="Ver mais"
-            @click="showMore = true"
+            @click="seeMore"
         />
     </div>
 </template>
 
 <script>
 import AppRepository from '../repository/AppRepository'
-import { mapState } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import AppShowButton from '../buttons/AppShowButton';
 
 
 export default {    
     name:'AppRepositorie',
-    
-    data(){
-        return{
-            showMore: false
+
+    components:{
+        AppRepository,
+        AppShowButton
+    },
+    methods:{
+        ...mapMutations([
+            'setrepositoriesitems'
+        ]),
+        ...mapActions([
+            'getRepositories'
+        ]),
+        seeMore(){
+            this.setrepositoriesitems()
+            this.getRepositories()
         }
     },
-    components:{
-    AppRepository,
-    AppShowButton
-    
-},
     computed:{
         ...mapState([
             'repositories'
         ]),
-        visiblerepositories() {
-             return this.showMore ? this.repositories : this.repositories.slice(0, 3)
-        }
+    
     }
 
 }
@@ -48,7 +52,16 @@ export default {
 
 
 <style lang="scss" scoped>
+@import '../../scss/style.scss';
+.c-repositories{
+    @extend .display-flex;
+    flex-direction: column;
+    @extend .align-items-center;
 
+    &__repository{
+        width: 100%;
+    }
+}
 
 
 </style>

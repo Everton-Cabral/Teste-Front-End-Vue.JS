@@ -4,7 +4,7 @@
         <input type="text" 
             placeholder="Buscar..." 
             class="c-input__search" 
-            v-model="text"
+            v-model="localtext"
             @keypress.enter="submite()"
         >
         <span class="material-symbols-outlined"
@@ -16,22 +16,23 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
     name:'AppInput',
 
-    data(){
-        return{
-            text:'',
-        }
-    },
     methods:{
+        ...mapActions([
+            'getUsers',
+            'getRepositories'
+        ]),
+
         ...mapMutations([
+            'set_text',
             'changeAlert',
             'sendingUsers',
-            'sendingRepositories'
+            'sendingRepositories',
+            'set_text'
         ]),
         submite(){
             if(this.text === ''){
@@ -40,38 +41,47 @@ export default {
             }
             
             if(this.userSearch){
-                fetch(`https://api.github.com/search/users?q=${this.text}&page=1`)
-                .then(response => response.json())
-                .then(data => {
-                    if(data.items.length === 0){ 
-                        this.text = ''
-                        this.changeAlert()  
-                        return;
+                this.getUsers()
+                .then((data) => {
+                    if(!data.items.length){
+                        this.changeAlert()
+                        return
                     }
-                    this.sendingUsers(data.items)
-                    this.$router.push('/users')
-                })
-               
+                    this.$router.push({ name: 'users' })
+                })                
             }else{
-                fetch(`https://api.github.com/search/repositories?q=${this.text}&page=1`)
-                .then(response => response.json())
+                this.getRepositories({
+                    q: this.text
+                })
                 .then(data => { 
-                    if(data.items.length === 0){
-                        this.text = ''
+                    if(!data.items.length){
                         this.changeAlert()
                         return;
                     }
-                    this.sendingRepositories(data.items)
-                    this.$router.push('/repositories')
+                    this.$router.push({ name: 'repositories' })
                 })     
             }
         }
     },
+
+    mounted() {
+        this.set_text('')
+    },
+
     computed:{
         ...mapState([
             'repositorySearch',
             'userSearch',
-        ])
+            'text'
+        ]),
+        localtext:{
+            get(){
+                return this.text
+            },
+            set (q) {
+                this.set_text(q)
+            }
+        }
     }
 }
 </script>

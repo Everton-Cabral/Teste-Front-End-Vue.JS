@@ -33,7 +33,7 @@
         </div>
 
         <div class="c-userdetail__repositories">
-            <div v-for="repository in visibleuserrepositories" :key="repository.id" >
+            <div v-for="repository in visibleuserrepositories" :key="repository.id" class="c-userdetail__repositories__repository">
                 <AppRepository 
                     :name="repository.name"
                     :description="repository.description"
@@ -43,6 +43,7 @@
             </div>
             <AppShowButton 
                 @click="showMore=true"
+                name="Ver mais repositórios"
             />
         </div>
         
@@ -70,7 +71,7 @@ export default {
             'userrepositories'
         ]),
         visibleuserrepositories(){
-            return this.showMore ? this.userrepositories : this.userrepositories.slice(0, 3)
+            return this.showMore ? this.userrepositories : this.userrepositories.slice(0, 4)
         }
     }
 }
@@ -121,6 +122,13 @@ export default {
     }
     &__repositories{
         width: 100%;
+        @extend .display-flex;
+        flex-direction: column;
+        @extend .align-items-center;
+
+        &__repository{
+            width: 100%;
+        }
     }
 
 }

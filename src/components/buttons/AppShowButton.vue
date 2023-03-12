@@ -1,7 +1,7 @@
 <template>
-    <div class="c-showbutton">
+    <button class="c-showbutton">
         {{ name }}
-    </div>
+    </button>
 </template>
 
 <script>
@@ -18,9 +18,9 @@ export default {
 <style lang="scss" scoped>
 @import '../../scss/style.scss';
 .c-showbutton{
-    width: 148px;
+    width: max-content;
     height: 46px;
-    padding: 0px 10px 0px 10px;
+    padding: 0px 30px 0px 30px;
     border: 2px solid #000000;
     border-radius: 10px;
     font-family: $font-user;
@@ -30,6 +30,7 @@ export default {
     @extend .display-flex;
     @extend .justify-content-center;
     @extend .align-items-center;
+    flex-wrap: nowrap;
 }
 .c-showbutton:hover{
     cursor: pointer;
